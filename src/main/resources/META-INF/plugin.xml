@@ -1,0 +1,28 @@
+<idea-plugin>
+    <id>pl.tools.intellij.timestampgenerator</id>
+    <name>Timestamp &amp; UUID Generator (Alt+Insert)</name>
+    <version>1.2.0</version>
+    <vendor>Local / Community</vendor>
+    <description><![CDATA[
+        Configurable root-level generators and nested submenus for Generate (Alt+Insert).
+        Manage timestamps, UUIDs, and custom templates in one reorderable tree.
+        Move generators between root and folders via buttons or drag and drop.
+    ]]></description>
+    <idea-version since-build="242"/>
+    <depends>com.intellij.modules.platform</depends>
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService serviceImplementation="pl.tools.intellij.timestamp.GeneratorSettings"/>
+        <applicationConfigurable parentId="tools"
+                                 instance="pl.tools.intellij.timestamp.GeneratorConfigurable"
+                                 id="pl.tools.intellij.timestamp.GeneratorConfigurable"
+                                 displayName="Value Generator"/>
+    </extensions>
+    <actions>
+        <!-- One dynamic non-popup group replaces all formerly hardcoded Generate entries. -->
+        <group id="pl.tools.intellij.timestamp.GeneratorMenu"
+               class="pl.tools.intellij.timestamp.GeneratorMenuGroup"
+               text="Value generators" popup="false">
+            <add-to-group group-id="GenerateGroup" anchor="last"/>
+        </group>
+    </actions>
+</idea-plugin>
