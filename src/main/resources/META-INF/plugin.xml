@@ -2,7 +2,7 @@
     <id>pl.tools.intellij.timestampgenerator</id>
     <name>Timestamp &amp; UUID Generator</name>
     <version>1.2.0</version>
-    <vendor>Local / Community</vendor>
+    <vendor email="thevill77@gmail.com" url="https://github.com/Zaba77/Timestamp-UUID-Generator">Zabiqo</vendor>
     <description><![CDATA[
         Configurable root-level generators and nested submenus for Generate (Alt+Insert).
         Manage timestamps, UUIDs, and custom templates in one reorderable tree.
