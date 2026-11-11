@@ -1,5 +1,5 @@
 <idea-plugin>
-    <id>pl.tools.intellij.timestampgenerator</id>
+    <id>pl.zabiqo.timestampgenerator</id>
     <name>Timestamp &amp; UUID Generator</name>
     <version>1.2.0</version>
     <vendor email="thevill77@gmail.com" url="https://github.com/Zaba77/Timestamp-UUID-Generator">Zabiqo</vendor>
