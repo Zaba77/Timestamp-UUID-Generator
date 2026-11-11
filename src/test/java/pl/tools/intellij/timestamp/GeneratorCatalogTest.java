@@ -24,17 +24,18 @@ class GeneratorCatalogTest {
         GeneratorCatalog.validate(all);
     }
 
-    @Test void nestedFolderAndMovedGeneratorProduceCorrectChildren() {
+    @Test void nestedFolderAndMovedGeneratorPreserveStoredOrder() {
         List<GeneratorEntry> entries = GeneratorCatalog.defaults();
         GeneratorEntry parent = GeneratorEntry.folder("", "Messages");
         GeneratorEntry child = GeneratorEntry.folder(parent.id, "GLOBE");
         GeneratorEntry generated = GeneratorEntry.generator(child.id, "GLOBE ref", "${date:yyyyMMdd}-${uuid32}");
         entries.add(parent); entries.add(child); entries.add(generated);
-        entries.get(0).parentId = child.id;
+        GeneratorEntry moved = entries.get(0);
+        moved.parentId = child.id;
         assertEquals(List.of(parent), GeneratorCatalog.children(entries, "").stream()
                 .filter(GeneratorEntry::isFolder).toList());
         assertEquals(List.of(child), GeneratorCatalog.children(entries, parent.id));
-        assertEquals(List.of(generated, entries.get(0)), GeneratorCatalog.children(entries, child.id));
+        assertEquals(List.of(moved, generated), GeneratorCatalog.children(entries, child.id));
         GeneratorCatalog.validate(entries);
     }
 

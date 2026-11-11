@@ -58,7 +58,8 @@ public final class GeneratorConfigurable implements Configurable {
                 return this;
             }
         });
-        tree.setDragEnabled(true);
+        // Searchable-options indexing creates this UI without a graphical display.
+        tree.setDragEnabled(!GraphicsEnvironment.isHeadless());
         tree.setDropMode(DropMode.ON_OR_INSERT);
         tree.setTransferHandler(new GeneratorTransferHandler());
         tree.addTreeSelectionListener(e -> updateDetails());
