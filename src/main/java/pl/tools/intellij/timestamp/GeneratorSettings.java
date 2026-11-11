@@ -8,7 +8,7 @@ import com.intellij.openapi.components.Storage;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Preserve plugin ID, @State name and storage path for automatic upgrades from v1.1.x. */
+/** Preserve @State name and storage path to retain existing generator settings. */
 @State(name = "ValueGeneratorSettings", storages = @Storage("value-generator.xml"))
 public final class GeneratorSettings implements PersistentStateComponent<GeneratorSettings.StoredState> {
     public static final class StoredState {

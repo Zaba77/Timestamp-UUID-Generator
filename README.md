@@ -4,8 +4,8 @@
 
 **Version:** 1.2.0 · IntelliJ IDEA plugin
 
-**Updated version of the existing plugin**, retaining the `pl.tools.intellij.timestampgenerator` identifier.
-It provides full control over the entries in `Alt+Insert → Generate`.
+**Plugin ID:** `pl.zabiqo.timestampgenerator`.
+The plugin provides full control over the entries in `Alt+Insert → Generate`.
 
 ## What's new
 
@@ -73,6 +73,8 @@ The generated value is inserted at the caret or replaces the current selection. 
 If Gradle 9+ is already installed, you can also run `gradle test buildPlugin`.
 
 When upgrading from 1.1.1, keep the `value-generator.xml` file: it is required to migrate existing generators.
+
+**Earlier local builds:** uninstall any earlier local build of Timestamp & UUID Generator and restart the IDE before installing this build with the new plugin ID. Keep `value-generator.xml` to retain your generator settings.
 
 ## Tests and limitations
 
