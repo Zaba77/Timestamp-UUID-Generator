@@ -76,5 +76,5 @@ Przy aktualizacji z 1.1.1 nie usuwaj ręcznie pliku `value-generator.xml`: potrz
 ## Testy i ograniczenia
 
 - Logika szablonów, lista startowa, migracja, walidacja folderów i testy Swing drzewa (przenoszenie, zmiana kolejności, odrzucanie zapętleń) zostały uruchomione lokalnie.
-- **To jest archiwum projektu, nie gotowy plugin instalacyjny.** W środowisku tworzenia brak internetu do repozytoriów Gradle i oficjalnego IntelliJ SDK, dlatego nie można tu uczciwie potwierdzić pełnej integracji IDE ani dostarczyć zweryfikowanego instalacyjnego ZIP.
+- **To jest archiwum projektu, nie gotowy plugin instalacyjny.** 
 - Produkcyjny ZIP należy zbudować skryptem, który używa oficjalnego IntelliJ SDK. Nie instaluj ZIP ze źródłami jako wtyczki.
