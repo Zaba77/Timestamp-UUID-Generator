@@ -1,4 +1,8 @@
-# Timestamp & UUID Generator 1.2.0 — IntelliJ IDEA
+# Timestamp & UUID Generator
+
+![Timestamp & UUID Generator](src/main/resources/META-INF/pluginIcon.svg)
+
+**Wersja:** 1.2.0 · Wtyczka do IntelliJ IDEA
 
 **Nowa wersja dotychczasowej wtyczki**, nadal z identyfikatorem `pl.tools.intellij.timestampgenerator`.
 Jej celem jest pełna kontrola nad pozycjami w `Alt+Insert → Generate`.
@@ -63,7 +67,7 @@ Wynik jest wstawiany pod kursorem albo zastępuje zaznaczenie w edytorze. `Ctrl+
 
 **Wymagania:** JDK 21 (i dostęp do internetu do pobrania oficjalnych zależności JetBrains).
 
-1. Rozpakuj **ZIP ze źródłami**.
+1. Sklonuj repozytorium lub wybierz **Code → Download ZIP** na GitHubie i rozpakuj pobrane archiwum.
 2. W katalogu projektu uruchom dwuklikiem **`build-plugin.bat`**.
 3. Skrypt automatycznie pobiera oficjalny **Gradle 9.2.1**, testuje kod i uruchamia `buildPlugin` z IntelliJ Platform SDK **2024.2.6**.
 4. Po sukcesie plik instalacyjny znajdziesz w `build/distributions/*.zip`.
