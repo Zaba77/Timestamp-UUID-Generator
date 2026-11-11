@@ -2,83 +2,80 @@
 
 ![Timestamp & UUID Generator](src/main/resources/META-INF/pluginIcon.svg)
 
-**Wersja:** 1.2.0 · Wtyczka do IntelliJ IDEA
+**Version:** 1.2.0 · IntelliJ IDEA plugin
 
-**Nowa wersja dotychczasowej wtyczki**, nadal z identyfikatorem `pl.tools.intellij.timestampgenerator`.
-Jej celem jest pełna kontrola nad pozycjami w `Alt+Insert → Generate`.
+**Updated version of the existing plugin**, retaining the `pl.tools.intellij.timestampgenerator` identifier.
+It provides full control over the entries in `Alt+Insert → Generate`.
 
-## Co się zmieniło
+## What's new
 
-- **Wszystkie** generatory, także wbudowane SQL/ISO/UNIX/UUID, są edytowalne i usuwalne w **jednym drzewie**.
-- Generator można umieścić bezpośrednio w **root** menu `Generate`, nie tylko w „My generators”.
-- Można tworzyć foldery i dowolnie zagnieżdżone podfoldery, stanowiące podmenu.
-- Można przenosić generator/folder między poziomem głównym i folderami, także metodą **przeciągnij i upuść**.
-- Przyciski **Up**, **Down**, **Move to...**, **Duplicate**, **Edit / Rename**, **Remove**, **Preview**.
-- Zmiany aktualizują menu po kliknięciu **Apply**, bez restartu.
-- Konfiguracja zapisywana globalnie dla IDE, a nie dla konkretnego projektu.
-- Migracja szablonów dodanych w 1.1.x (stary `value-generator.xml`).
-- Poprawiona metoda `Document.replaceString(int,int,CharSequence)` nadal zachowana.
+- **All** generators, including the built-in SQL/ISO/UNIX/UUID generators, can be edited and removed in **one tree**.
+- Generators can appear directly at the **root** of the `Generate` menu, as well as in “My generators”.
+- Folders and nested subfolders can be created as submenus.
+- Generators and folders can be moved between the root and folders using buttons or **drag and drop**.
+- Available controls: **Up**, **Down**, **Move to...**, **Duplicate**, **Edit / Rename**, **Remove**, **Preview**.
+- Clicking **Apply** updates the menu without restarting the IDE.
+- Settings are saved globally for the IDE.
+- Templates added in 1.1.x are migrated from the old `value-generator.xml` file.
+- The corrected `Document.replaceString(int,int,CharSequence)` call is preserved.
 
-## Jak używać
+## Usage
 
-`Settings → Tools → Value Generator`:
+Open `Settings → Tools → Value Generator`:
 
-1. Na drzewie `Generate (Alt+Insert) [root]` kliknij **+ Generator**, aby utworzyć pozycję bezpośrednio w `Alt+Insert`.
-2. Kliknij **+ Folder**, aby dodać rozwijane podmenu. Będąc wewnątrz folderu, możesz dodać następne podfoldery.
-3. Zaznacz generator/folder i użyj **Move to...**, aby wybrać inny folder albo root. Możesz również przeciągać pozycje w drzewie.
-4. Użyj **Up / Down** do zmiany kolejności. **Edit / Rename** zmienia nazwę/treść, **Duplicate** kopiuje generator, **Remove** usuwa.
-5. Kliknij **Apply** w oknie ustawień. Od tej chwili nowy układ obowiązuje w menu `Alt+Insert → Generate`.
+1. In the `Generate (Alt+Insert) [root]` tree, click **+ Generator** to add an entry directly to `Alt+Insert`.
+2. Click **+ Folder** to add a submenu. Select a folder to create further subfolders inside it.
+3. Select a generator or folder and use **Move to...** to choose another folder or the root. You can also drag entries within the tree.
+4. Use **Up / Down** to change the order. **Edit / Rename** changes the name or template, **Duplicate** copies a generator, and **Remove** deletes an entry.
+5. Click **Apply** in the settings window to use the new layout in `Alt+Insert → Generate`.
 
-**Uwaga:** usunięcie folderu usuwa wszystkie generatory i podfoldery w jego wnętrzu (wymaga potwierdzenia). Można usuwać także generatory domyślne. Aby przywrócić usunięty generator, dodaj go ponownie z odpowiednim szablonem.
+**Note:** deleting a folder also deletes all generators and subfolders inside it and requires confirmation. Built-in generators can also be removed. To restore a deleted generator, add it again with the appropriate template.
 
-Przykładowy układ:
+Example menu layout:
 
-```text
-Alt+Insert > Generate
-  UUID: Random v4                         <-- root
-  Timestamp: SQL                          <-- root
-  Test ID                                 <-- root, własny
-  GLOBE >                                 <-- folder
-    MessageRefID                          <-- generator
-    XML IDs >                             <-- podfolder
-      DocumentRefID
-  Configure generators...
-```
-
-## Dostępne szablony
-
-| Token | Wynik |
+| Menu path | Item |
 |---|---|
-| `${uuid}` | UUID v4 z myślnikami |
-| `${uuid32}` | UUID v4 bez myślników |
-| `${uuid_upper}` | UUID v4 wielkimi literami |
-| `${unix}` | UNIX timestamp (sekundy) |
-| `${unix_ms}` | UNIX timestamp (milisekundy) |
-| `${date:yyyyMMddHHmmss}` | aktualny czas w lokalnej strefie |
-| `${utc:yyyy-MM-dd'T'HH:mm:ss'Z'}` | aktualny czas w UTC |
-| `${rand:8}` | osiem losowych cyfr |
-| `${selection}` | tekst zaznaczony w edytorze |
+| `Generate → UUID: Random v4` | Built-in generator at the root |
+| `Generate → Timestamp: SQL` | Built-in generator at the root |
+| `Generate → Test ID` | Custom generator at the root |
+| `Generate → GLOBE → MessageRefID` | Generator in a folder |
+| `Generate → GLOBE → XML IDs → DocumentRefID` | Generator in a subfolder |
+| `Generate → Configure generators...` | Generator settings |
 
-Dowolny szablon może łączyć tekst i wiele tokenów, np. `PL-${date:yyyyMMdd}-${uuid32}`. Poprzedzenie `${...}` ukośnikiem `\` daje dosłowny tekst.
+## Available templates
 
-Wynik jest wstawiany pod kursorem albo zastępuje zaznaczenie w edytorze. `Ctrl+Z` cofa wstawienie.
+| Token | Output |
+|---|---|
+| `${uuid}` | UUID v4 with hyphens |
+| `${uuid32}` | UUID v4 without hyphens |
+| `${uuid_upper}` | Uppercase UUID v4 |
+| `${unix}` | UNIX timestamp in seconds |
+| `${unix_ms}` | UNIX timestamp in milliseconds |
+| `${date:yyyyMMddHHmmss}` | Current time in the local time zone |
+| `${utc:yyyy-MM-dd'T'HH:mm:ss'Z'}` | Current time in UTC |
+| `${rand:8}` | Eight random digits |
+| `${selection}` | Text selected in the editor |
 
-## Instalacja przez samodzielną kompilację na Windows
+A template can combine text and multiple tokens, for example `PL-${date:yyyyMMdd}-${uuid32}`. Prefixing `${...}` with a backslash (`\`) produces literal text.
 
-**Wymagania:** JDK 21 (i dostęp do internetu do pobrania oficjalnych zależności JetBrains).
+The generated value is inserted at the caret or replaces the current selection. Use `Ctrl+Z` to undo the insertion.
 
-1. Sklonuj repozytorium lub wybierz **Code → Download ZIP** na GitHubie i rozpakuj pobrane archiwum.
-2. W katalogu projektu uruchom dwuklikiem **`build-plugin.bat`**.
-3. Skrypt automatycznie pobiera oficjalny **Gradle 9.2.1**, testuje kod i uruchamia `buildPlugin` z IntelliJ Platform SDK **2024.2.6**.
-4. Po sukcesie plik instalacyjny znajdziesz w `build/distributions/*.zip`.
-5. IntelliJ: `Settings → Plugins → ⚙ → Install Plugin from Disk...` → wskaż ZIP z `build/distributions`.
+## Building and installing on Windows
 
-Alternatywnie, jeśli masz już Gradle 9+, uruchom `gradle test buildPlugin`.
+**Requirements:** JDK 21 and an internet connection to download the official JetBrains dependencies.
 
-Przy aktualizacji z 1.1.1 nie usuwaj ręcznie pliku `value-generator.xml`: potrzebny jest do migracji generatorów.
+1. Clone the repository or select **Code → Download ZIP** on GitHub and extract the downloaded archive.
+2. Double-click **`build-plugin.bat`** in the project directory.
+3. The script downloads the official **Gradle 9.2.1** distribution, runs the tests, and invokes `buildPlugin` with IntelliJ Platform SDK **2024.2.6**.
+4. After a successful build, the installable archive is available at `build/distributions/*.zip`.
+5. In IntelliJ IDEA, open `Settings → Plugins → ⚙ → Install Plugin from Disk...` and select the ZIP from `build/distributions`.
 
-## Testy i ograniczenia
+If Gradle 9+ is already installed, you can also run `gradle test buildPlugin`.
 
-- Logika szablonów, lista startowa, migracja, walidacja folderów i testy Swing drzewa (przenoszenie, zmiana kolejności, odrzucanie zapętleń) zostały uruchomione lokalnie.
-- **To jest archiwum projektu, nie gotowy plugin instalacyjny.** 
-- Produkcyjny ZIP należy zbudować skryptem, który używa oficjalnego IntelliJ SDK. Nie instaluj ZIP ze źródłami jako wtyczki.
+When upgrading from 1.1.1, keep the `value-generator.xml` file: it is required to migrate existing generators.
+
+## Tests and limitations
+
+- Template logic, the default catalog, migration, folder validation, and Swing tree operations (moving, reordering, and cycle prevention) have been checked locally.
+- **This archive contains project sources.** Build the installable plugin ZIP before installation.
+- Build the distribution using the provided script, which uses the official IntelliJ SDK. Install the ZIP produced in `build/distributions`.
